@@ -2,7 +2,7 @@ import pygame
 import copy as c
 import grid_generator_main as gen
 
-
+#POOP
 pygame.init()
 #RGB colors
 black = (0, 0, 0)
