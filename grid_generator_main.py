@@ -188,7 +188,6 @@ class Grid:
                     self.edit_pos(copy_grid, (key, 7 + i), numb)
             if not self.check_row(copy_grid, 8):
                 self.grid = c.deepcopy(copy_grid)
-                print("DONE")
                 return False
             return True
 
@@ -203,16 +202,12 @@ class Grid:
             for i in range(2):
                 # flips last element in dict
                 flip(possib_solution, length)
-                # print("CHECK", dict_.items())
                 if not check(possib_solution):
                     return 1
                     # QUIT **********************
                 if length != 0:
                     func(length - 1)
 
-        for row in self.grid:
-            print(row)
-        print("-" * 10)
         possib_solution = {}
         for col_numb in range(9):
             possib_solution[col_numb] = self.find_missing_numb(
@@ -224,7 +219,6 @@ class Grid:
         row_index = row_ind
         repeat = 0
         while True:
-            # print("Row Number: ", row_index)
             shuffle_row = c.deepcopy(self.row)
             random.shuffle(shuffle_row)
             row_work = True
@@ -242,14 +236,9 @@ class Grid:
                     break
             if row_work:
                 self.edit_row(self.grid, row_index, shuffle_row)
-                print(row_index, "repeated", repeat, "times")
                 repeat = 0
                 row_index += 1
 
-            # just printing the grid every 100000 loops
-            if repeat % 100000 == 0:
-                for row in self.grid:
-                    print(row)
             # if single row is taking more than 50000 loops return 0 to end func then delete prev row
             if repeat > 50000:
                 return 0
@@ -258,7 +247,6 @@ class Grid:
             self.repeat_all += 1
             # stop randomizing row and begin alg for last 2 rows
             if row_index == 7:
-                print("Looped:", self.repeat_all, "times")
                 return self.when_row_is_7()
                 # return self.grid
 
@@ -272,7 +260,6 @@ class Grid:
         amount_zeros = 81 - hints
         zer_per_box_min, zer_per_box_max = int(amount_zeros/9)-1, int(amount_zeros/9)+1
 
-        print(amount_zeros)
         for col in range(3):
             for row in range(3):
                 zer_box = random.randint(zer_per_box_min, zer_per_box_max)
@@ -282,7 +269,6 @@ class Grid:
                         coord_x = col*3 + x
                         coord_y = row*3 + y
                         if self.get_pos(self.hint_grid, (coord_x, coord_y)) == " ":
-                            print("EQUAL TO 0")
                             continue
                         else:
                             break
@@ -361,7 +347,6 @@ if __name__ == "__main__":
     bad_row = 0
     while True:
         if g.fill_grid(bad_row) == 0:
-            print("FINISHED BAD ROW")
             bad_row = g.reset_last_row(g.grid)
             continue
         else:
