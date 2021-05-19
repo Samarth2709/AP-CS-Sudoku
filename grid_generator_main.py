@@ -178,6 +178,20 @@ class Grid:
             self.edit_pos(self.grid, (col_numb, 8), missing_ans[0])
         # finds the last numb that is not in col and adds to last row
 
+    def ask_first_row(self):
+        while True:
+            row = []
+            for i in range(9):
+                numb = int(input("Enter the order of numbers for the first row.\nWhat do you want the "+str(i+1)+" number to be?:\n"))
+                row.append(numb)
+            if self.check_list(row):
+                print("There was a duplicate in tour list of numbers")
+                continue
+            else:
+                print("Good")
+                break
+        return c.deepcopy(row)
+
     def when_row_is_7(self):
         #chenge to this when row itter is 6 (two row left)
         def check(possib_dict):
@@ -215,8 +229,12 @@ class Grid:
         # returns a good combination of possib_solution
         return func(8)
 
-    def fill_grid(self, row_ind=0):
-        row_index = row_ind
+    def add_user_row_to_grid(self):
+        print("DOING")
+        self.grid[0] = self.ask_first_row()
+
+    def fill_grid(self, row_ind=1):
+        row_index = 1
         repeat = 0
         while True:
             shuffle_row = c.deepcopy(self.row)
@@ -345,6 +363,7 @@ class Grid:
 if __name__ == "__main__":
     g = Grid()
     bad_row = 0
+    g.add_user_row_to_grid()
     while True:
         if g.fill_grid(bad_row) == 0:
             bad_row = g.reset_last_row(g.grid)
