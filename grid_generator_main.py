@@ -1,8 +1,7 @@
 import random
 import copy as c
 import math
-import statistics as s
-import time
+import os
 
 
 class Grid:
@@ -180,12 +179,22 @@ class Grid:
 
     def ask_first_row(self):
         while True:
+            os.system('cls')
+            number_valid = True
             row = []
             for i in range(9):
-                numb = int(input("Enter the order of numbers for the first row.\nWhat do you want the "+str(i+1)+" number to be?:\n"))
+                try:
+                    numb = int(input("Enter the order of numbers for the first row.\nWhat do you want the "+str(i+1)+" number to be?:\n"))
+                except ValueError:
+                    print("Enter a intiger!")
+                    number_valid = False
+                    break
+                if not 0 < int(numb) <= 9:
+                    number_valid = False
+                    break
                 row.append(numb)
-            if self.check_list(row):
-                print("There was a duplicate in tour list of numbers")
+            if self.check_list(row) or not number_valid:
+                print("One or more of the entered numbers was incorrect!")
                 continue
             else:
                 print("Good")
@@ -233,7 +242,7 @@ class Grid:
         print("DOING")
         self.grid[0] = self.ask_first_row()
 
-    def fill_grid(self, row_ind=1):
+    def fill_grid(self):
         row_index = 1
         repeat = 0
         while True:

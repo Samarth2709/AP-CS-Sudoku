@@ -181,7 +181,7 @@ g = gen.Grid()
 bad_row = 0
 g.add_user_row_to_grid()
 while True:
-    if g.fill_grid(bad_row) == 0:
+    if g.fill_grid() == 0:
         bad_row = g.reset_last_row(g.grid)
         continue
     else:
