@@ -103,9 +103,7 @@ class Window:
         if x + w > mouse[0] > x and y + h > mouse[1] > y:
             pygame.draw.rect(display, ac, (x, y, w, h))
             if click[0] == True:
-                print(click)
                 if action != None:
-                    print(kwargs)
                     if len(kwargs) == 0:
                         action()
                     else:
@@ -125,9 +123,7 @@ class Window:
             pygame.draw.rect(display, ac, (x, y, w, h))
             if click[0] == True:
                 self.active_box = box_id
-                print(click)
                 if action != None:
-                    print(kwargs.values())
                     action(kwargs.values())
         else:
             pygame.draw.rect(display, ic, (x, y, w, h))
@@ -200,7 +196,6 @@ def change_pos_active():
         gameDisplay.numb_pressed = None
     elif gameDisplay.active_box != None and gameDisplay.numb_pressed != None and gameDisplay.active_box:
         g.edit_pos(gameDisplay.display_grid_lis, gameDisplay.active_box, gameDisplay.numb_pressed)
-        print(gameDisplay.active_box)
         gameDisplay.numb_pressed = None
         gameDisplay.active_box = None # TODO Which one reset active_box after enter number or keep active_box
     elif gameDisplay.numb_pressed != None and gameDisplay.active_box == None:
