@@ -229,15 +229,11 @@ def main():
     end = False
     while not end:
         for event in pygame.event.get():  # ANY EVENTS THAT HAPPEN WITHIN WINDOW
-            print(event)
             # EVENT TYPES ARE ANY MAJOR EVENT (QUIT, ACTIVEEVENT, KEYDOWN, KEYUP, MOUSEMOTION, MOUSEBUTTONUP,
             # MOUSEBUTTONDOWN, JOYAXISMOTION, JOYBALLMOTION, JOYHATMOTION, JOYBUTTONUP, JOYBUTTONDOWN, VIDEORESIZE,
             # VIDEOEXPOSE, USEREVENT)
             if event.type == pygame.QUIT:
                 end = True
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_w:
-                    print('w')
 
         gameDisplay.window.fill(black)
         # DISPLAY OTHER OBJECTS HERE
