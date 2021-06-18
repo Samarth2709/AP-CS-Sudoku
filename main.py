@@ -187,7 +187,7 @@ print("COMPLETE")
 for row in g.grid:
     print(row)
 
-gameDisplay = Window((850, 550), black, "Suduko", g.grid, g.user_grid)
+gameDisplay = Window((850, 550), black, "Suduko Game", g.grid, g.user_grid)
 def reset_active():
     gameDisplay.active_box = None
 
